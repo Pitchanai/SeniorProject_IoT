@@ -1,5 +1,6 @@
-# SeniorProject : Data Collection Framework for Public Transport System using MQTT
-## My senior project in 4th year of Computer Engineering, Chulalongkorn University.
+# SeniorProject : 
+# Data Collection Framework for Public Transport System using MQTT
+My senior project in 4th year of Computer Engineering, Chulalongkorn University.
 
 
 **There are 6 parts of project.**
