@@ -1,0 +1,19 @@
+{
+  "name": "subscriber",
+  "version": "1.0.0",
+  "description": "Subscribe from EMQTT to database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mqtt"
+  ],
+  "author": "Pitchanai Thitipakorn",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.19.2",
+    "mongodb": "^2.2.33",
+    "mqtt": "^2.13.1"
+  }
+}

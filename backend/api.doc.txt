@@ -1,0 +1,180 @@
+URL : https://api.vehicleon.cloud/
+
+====== LOGIN ======
+@POST:      /api/signup (Auth)              [finished]
+
+@POST:      /api/signin (No Auth)           [finished]
+@PUT:       /api/change_password (Auth)     [finished]
+
+====== MQTT ACCOUNT ====== (Authen required)
+@GET:       /api/mqtt_account/:username     [finished]
+@POST:      /api/mqtt_account               [finished]
+@PUT:       /api/mqtt_account/:username     [finished]
+@DELETE:    /api/mqtt_account/:username     [finished]
+
+@GET:       /api/mqtt_all_username          [finished]
+@GET:       /api/mqtt_all_info              [finished]
+
+====== EMQTT ====== (Authen required)
+@GET:       /emqtt/clients                  [finished]
+@GET:       /emqtt/clients/:clientid        [finished]
+@GET:       /emqtt/monitoring               [finished]
+@GET:       /emqtt/subscriptions            [finished]
+
+
+====== MQTT TOKEN ======
+@POST:      /mqtt/signin                    [finished]
+
+
+@POST: api/signup ** ONLY ADMINISTRATOR CAN SIGNUP OTHER ACCOUNT **
+    > SEND
+    {
+        username: String // without spacebar
+        password: String // without spacebar
+        roles: String // Administrator, User
+    }
+    > RECEIVED
+    {
+        success: boolean
+        msg: String 
+    }
+
+@POST: api/signin
+    > SEND
+    {
+        username: String // without spacebar
+        password: String // without spacebar
+    }
+    > RECEIVED
+    {
+        success: boolean
+        msg: String
+    }
+
+@POST: api/change_password
+    > SEND
+    {
+        password: String // without spacebar
+    }
+    > RECEIVED
+    {
+        success: boolean
+        msg: String
+    }
+
+@GET: api/mqtt_account/:username
+{
+    > RECEIVED (success: true)
+    {
+        success: [true]
+        result: {
+            username: String
+            salt: String
+            is_superuser: boolean
+            created: Date()
+            device_name: String
+            description: String
+            owner: String
+            publish: Array [String] // [ 'Chulalongkorn/Pop01/Latitude' , 'Chulalongkorn/Pop02' ]
+            subscribe: Array [String]
+            pubsub: Array [String]
+        }
+    }
+    > RECEIVED (success: false)
+    {
+        success: [false]
+        msg: String
+    }
+}
+
+@POST: api/mqtt_account/
+{
+    > SEND
+    {
+        username: String
+        password: String
+        is_superuser: boolean
+        device_name: String
+        description: String
+        publish: String // Chulalongkorn/Pop01,Chulalongkorn/Pop02
+        subscribe: String
+        pubsub: String
+    }
+    > RECEIVED
+    {
+        success: boolean
+        msg: String
+    }
+}
+
+@PUT: api/mqtt_account/:username
+{
+    > SEND
+    {
+        password: String
+        is_superuser: boolean
+        device_name: String
+        description: String
+        publish: String
+        subscribe: String
+        pubsub: String
+    }
+    > RECEIVED
+    {
+        success: boolean
+        msg: String
+    }
+}
+
+@DELETE: api/mqtt_account/:username
+{
+    > RECEIVED
+    {
+        success: boolean
+        msg: String
+    }
+}
+
+@GET: api/mqtt_all_username
+{
+    > RECEIVED
+    {
+        success: boolean
+        result: Array [String]
+    }
+}
+
+@GET: api/mqtt_all_info
+    > RECEIVED
+    {
+        success: boolean
+        result: Array []
+    }
+
+@GET: emqtt/clients
+    > RECEIVED
+    {
+        success: boolean
+        result: Array []
+    }
+
+@GET: emqtt/clients/:clientid
+    > RECEIVED
+    {
+        success: boolean
+        result: {}
+    }
+
+@GET: emqtt/monitoring
+    > RECEIVED
+    {
+        success: boolean
+        result: {}
+    }
+
+@GET: emqtt/subscriptions
+    > RECEIVED
+    {
+        success: boolean
+        result: {}
+    }
